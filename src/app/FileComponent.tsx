@@ -24,6 +24,7 @@ function FileComponent() {
       {id: 1, name: "Andrei"},
       {id: 2, name: "Test"}
     ]
+  
   return (
     <>
     {a && <PDFDownloadLink fileName='download.pdf' document={<FilePdf data={data} company={company} status={status} people={people} />}>{({ blob, url, loading, error }) =>

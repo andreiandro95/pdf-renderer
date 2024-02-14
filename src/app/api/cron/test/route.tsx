@@ -9,12 +9,11 @@ export async function GET (request: NextRequest){
         const filterCompanyUserId = ['aa@armuro.com', 'andrei.andronachi95@gmail.com']
         array.forEach(async (id) => {
         
-            const isSent = await resendSendMail({
+            await resendSendMail({
                 to: filterCompanyUserId,
                 subject: `Test`,
                 component: `<p>${id}</p>`,
               });
-              if (!isSent) throw new Error('Something went wrong');
         })
         return NextResponse.json({message: "OK"}, {status: 200})
     }catch (error) {

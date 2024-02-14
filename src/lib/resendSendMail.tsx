@@ -2,7 +2,7 @@ import nodemailer from "nodemailer"
 // const nodemailer = require('nodemailer');
 
 type Props = {
-    to: string | string[] | (string | null)[];
+    to: any;
     subject: string;
     component: string;
   };
@@ -21,6 +21,7 @@ export const resendSendMail = async ({ to, subject, component }: Props) => {
   if (Array.isArray(to)) {
     const results = await Promise.all(
       to.map(async (recipient) => {
+        console.log(recipient);
         const response = await transporter.sendMail({
           from: 'andrei.andronachi95@yahoo.com',
           to: recipient,
@@ -28,7 +29,7 @@ export const resendSendMail = async ({ to, subject, component }: Props) => {
           html: component,
         });
 
-        return response?.accepted && response.accepted.includes(recipient);
+        // return response?.accepted && response.accepted.includes(recipient);
       })
     );
 

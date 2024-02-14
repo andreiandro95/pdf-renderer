@@ -18,23 +18,7 @@ export const resendSendMail = async ({ to, subject, component }: Props) => {
     },
   });
 
-  if (Array.isArray(to)) {
-    const results = await Promise.all(
-      to.map(async (recipient) => {
-        console.log(recipient);
-        const response = await transporter.sendMail({
-          from: 'andrei.andronachi95@yahoo.com',
-          to: recipient,
-          subject,
-          html: component,
-        });
 
-        return response?.accepted && response.accepted.includes(recipient);
-      })
-    );
-
-    return results.every((result) => result);
-  } else {
     const response = await transporter.sendMail({
       from: 'andrei.andronachi95@yahoo.com',
       to,
@@ -43,5 +27,5 @@ export const resendSendMail = async ({ to, subject, component }: Props) => {
     });
 
     return response?.accepted && response.accepted.includes(to);
-  }
+  
 };

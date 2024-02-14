@@ -30,7 +30,7 @@ export const resendSendMail = async ({ to, subject, component }: Props) => {
         return response?.accepted && response.accepted.includes(recipient);
       })
     );
-console.log(results)
+ 
     return results.every((result) => result);
   } else {
     const response = await transporter.sendMail({

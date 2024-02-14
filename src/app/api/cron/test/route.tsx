@@ -6,13 +6,13 @@ import {NextRequest, NextResponse} from "next/server";
 export async function GET (request: NextRequest){
     try{
         const array = [1,2,3]
-        const filterCompanyUserId = 'andrei.andronachi95@gmail.com'
+        const filterCompanyUserId = ['aa@armuro.com', 'andrei.andronachi95@gmail.com']
         array.forEach(async (id) => {
         
             await resendSendMail({
                 to: filterCompanyUserId,
                 subject: `Test`,
-                component: `<p>${id}</p>`,
+                component: `<p>tesst ${id}</p>`,
               });
         })
         return NextResponse.json({message: "OK"}, {status: 200})

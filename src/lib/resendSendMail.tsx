@@ -29,7 +29,7 @@ export const resendSendMail = async ({ to, subject, component }: Props) => {
           html: component,
         });
 
-        // return response?.accepted && response.accepted.includes(recipient);
+        return response?.accepted && response.accepted.includes(recipient);
       })
     );
 

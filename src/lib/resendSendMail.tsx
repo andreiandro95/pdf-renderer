@@ -21,7 +21,8 @@ export const resendSendMail = async ({ to, subject, component }: Props) => {
       subject,
       html: render(component),
     });
-    // if (!response?.accepted || !response.accepted.includes(to)) return false;
+
+    if (!response?.accepted) return false;
   }
   return true;
 };

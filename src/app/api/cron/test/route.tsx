@@ -13,7 +13,7 @@ export async function GET (request: NextRequest){
                 const isSent = await resendSendMail({
                     to: email,
                     subject: `Test`,
-                    component: `<p>${id} - a</p>`,
+                    component: PendingHolidayRequestEmail({id}),
                   });
                   if (!isSent) throw new Error('Something went wrong');
             })

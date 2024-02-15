@@ -9,7 +9,7 @@ export async function GET (request: NextRequest){
         const filterCompanyUserId = ['aa@armuro.com', 'andrei.andronachi95@gmail.com']
         const emailList = filterCompanyUserId.toString()
         array.forEach(async (id) => {
-        
+        console.log("TEST")
             const isSent = await resendSendMail({
                 to: emailList,
                 subject: `Test`,

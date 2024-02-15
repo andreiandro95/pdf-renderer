@@ -1,46 +1,27 @@
 import nodemailer from 'nodemailer';
-
+import { render } from '@react-email/render';
 type Props = {
-    to: string | string[];
-    subject: string;
-    component: string;
-  };
-
-
+  to: string | null;
+  subject: string;
+  component: string;
+};
 //If in development mode, use nodemailer, else use Resend
 export const resendSendMail = async ({ to, subject, component }: Props) => {
   const transporter = nodemailer.createTransport({
     service: 'yahoo',
     auth: {
       user: 'andrei.andronachi95@yahoo.com',
-      pass: "mclbryxvldwiazep",
+      pass: 'kdjspnczmfdsjlda',
     },
   });
-
-  if (Array.isArray(to)) {
-    
-    const results = await Promise.all(
-      to.map(async (recipient) => {
-        const response = await transporter.sendMail({
-          from: 'andrei.andronachi95@yahoo.com',
-          to: recipient,
-          subject,
-          html: component + ` ${recipient}`,
-        });
-
-        return response?.accepted && response.accepted.includes(recipient);
-      })
-    );
- 
-    return results.every((result) => result);
-  } else {
+  if (to) {
     const response = await transporter.sendMail({
       from: 'andrei.andronachi95@yahoo.com',
       to,
       subject,
       html: component,
     });
-
-    return response?.accepted && response.accepted.includes(to);
+    if (!response?.accepted || !response.accepted.includes(to)) return false;
   }
+  return true;
 };

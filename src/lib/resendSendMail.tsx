@@ -13,7 +13,7 @@ export const resendSendMail = async ({ to, subject, component }: Props) => {
     service: 'yahoo',
     auth: {
       user: 'andrei.andronachi95@yahoo.com',
-      pass: "uedvekrhictaavxo",
+      pass: "mclbryxvldwiazep",
     },
   });
 

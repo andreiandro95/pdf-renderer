@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import { render } from '@react-email/render';
 type Props = {
-  to: string | null;
+  to: string | null | string[];
   subject: string;
   component: JSX.Element;
 };
@@ -21,7 +21,7 @@ export const resendSendMail = async ({ to, subject, component }: Props) => {
       subject,
       html: render(component),
     });
-    if (!response?.accepted || !response.accepted.includes(to)) return false;
+    // if (!response?.accepted || !response.accepted.includes(to)) return false;
   }
   return true;
 };

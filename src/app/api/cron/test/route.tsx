@@ -6,18 +6,17 @@ import {NextRequest, NextResponse} from "next/server";
 export async function GET (request: NextRequest){
     try{
         const array = [1,2,3]
-        const filterCompanyUserId = ['aa@armuro.com', 'andrei.andronachi95@gmail.com']
-        const emailList = filterCompanyUserId.toString()
-        array.forEach(async (id) => {
-        console.log("TEST")
+        const arrayEmail= ['aa@armuro.com', 'andrei.andronachi95@gmail.com']
+        const emailList = arrayEmail.toString()
+ 
             const isSent = await resendSendMail({
                 to: emailList,
                 subject: `Test`,
-                component: `<p>${id}</p>`,
+                component: `<p>test</p>`,
               });
               if (!isSent) throw new Error('Something went wrong');
               
-        })
+    
         return NextResponse.json({message: "OK"}, {status: 200})
     }catch (error) {
         return NextResponse.json({error: error}, {status: 500})

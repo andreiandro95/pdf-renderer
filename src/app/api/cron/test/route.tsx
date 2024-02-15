@@ -6,11 +6,12 @@ import {NextRequest, NextResponse} from "next/server";
 export async function GET (request: NextRequest){
     try{
         const array = [1,2,3]
-        const filterCompanyUserId = 'andrei.andronachi95@gmail.com'
+        const filterCompanyUserId = ['aa@armuro.com', 'andrei.andronachi95@gmail.com']
+        const emailList = filterCompanyUserId.toString()
         array.forEach(async (id) => {
         
             const isSent = await resendSendMail({
-                to: filterCompanyUserId,
+                to: emailList,
                 subject: `Test`,
                 component: `<p>${id}</p>`,
               });
